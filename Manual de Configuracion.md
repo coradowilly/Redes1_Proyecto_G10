@@ -1,4 +1,4 @@
-# MANUAL DE CONFIGURACION PRACTICA 4
+# MANUAL DE CONFIGURACION Proyecto Final
 ---
 ![](/Images/Logo.png)
 ## Laboratorio Redes de Computadoras 1
