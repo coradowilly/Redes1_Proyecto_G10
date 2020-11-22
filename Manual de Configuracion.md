@@ -177,25 +177,31 @@ Para configurar el port-channel se utilizan los siguientes comandos:
 Configuracion ESW Topologia 1
 
 EWS1
+
 ![esw](/Images/EWS1-T1.png)
 
 EWS2
+
 ![esw](/Images/EWS2-T1.png)
 
 PORT-CHANNEL
+
 ![esw](/Images/EWS2-CH-T1.png)
 
 Configuracion ESW Topologia 2
 
 EWS1
+
 ![esw](/Images/esw1.jpg)
 
 EWS2
+
 ![esw](/Images/esw2.jpg)
 ![esw](/Images/ews22.jpg)
 
 
 EWS3
+
 ![esw](/Images/esw3.jpg)
 
 > Paso 3: Configurar los puertos de los switch.
@@ -210,19 +216,29 @@ GNS3 nos permite configurar desde un panel estos puertos.
 TOPOLOGIA 1
 
 Switch 1
+
 ![sw](/Images/SWITCH1-T1.png)
+
 Switch 2
+
 ![sw](/Images/SWITCH2-T1.png)
+
 Switch 3
+
 ![sw](/Images/SWITCH3-T1.png)
+
 Switch 4
+
 ![sw](/Images/SWITCH4-T1.png)
 
 TOPOLOGIA 2
 
 Switch 1
+
 ![sw](/Images/sw1.jpeg)
+
 Switch 2
+
 ![sw](/Images/sw2.jpeg)
 
 
@@ -265,6 +281,7 @@ Topologia 2
 `exit`
 
 Ejemplo
+
 ![r](/Images/enrut.jpg)
 
 >Paso 6: Configuracion Clouds
@@ -274,9 +291,11 @@ Para configurar las nubes que se conectaran entre ambas se hace lo siguiente:
 `Click derecho->Configuracion`
 
 Topologia 1
+
 ![r](/Images/cloud1.jpeg)
 
 Topologia 2
+
 ![r](/Images/cloud2.jpeg)
 
 
@@ -292,27 +311,35 @@ Se utilizo el siguiente comando para ver y observar que interfaces estan conecta
 > TOPOLOGIA 1
 
 ESW1
+
 ![pq](/Images/ESW1-SPT-T1.png)
 
 ESW2
+
 ![pq](/Images/ESW2-SPT-T1.png)
 
 CON STP
+
 ![pq](/Images/SPT-T1.png)
 
 > TOPOLOGIA 2
 
 ESW1
+
 ![pq](/Images/stp1.jpeg)
 
 ESW2
+
 ![pq](/Images/stp2.jpeg)
 
 ESW3
+
 ![pq](/Images/stp3.jpeg)
 
 CON STP
+
 ![pq](/Images/TP22.jpg)
+
 ---
 ---
 # Captura de Parquetes.
@@ -330,9 +357,11 @@ Posterior se coloca sobre una conexcion y se inica la captura de paquetes:
 Se abrira la aplicacion Wireshark y se pude observar que los paquetes se estan enviando y recibiendo correctamente:
 
 TOPOLOGIA 1
+
 ![pq](/Images/cap1.jpg)
 
 TOPOLOGIA 2
+
 ![pq](/Images/cap2.jpg)
 
 ---
