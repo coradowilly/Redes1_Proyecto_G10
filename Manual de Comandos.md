@@ -3,7 +3,7 @@
 
 ## Topologia 1
 
-> # VTP & VLAN
+> VTP & VLAN
 
 ----------- ESW1 -----------
 
@@ -71,7 +71,8 @@
 
 `write`
 
-> # Portchannel 
+>  Portchannel 
+
 ------------ ESW1 ---------
 
 `conf t `
@@ -94,3 +95,148 @@
 
 ## Topologia 2
 
+----------- EWS2  -------------------
+
+`conf t`
+
+`interface range f1/0 - 2`
+
+`switchport mode trunk`
+
+`no shutdown`
+
+`end`
+
+`write`
+
+
+--- configurando dominio ----
+
+`conf t`
+
+`vtp domain T2GRUPO10`
+
+`vtp password T2GRUPO10`
+
+`vtp mode server`
+
+`end`
+
+`write`
+
+`sh vtp status`
+
+---configurando vlan ---------
+
+`conf t`
+
+`vlan 510`
+
+`name RED5`
+
+`end`
+
+`write`
+
+`conf t`
+
+`vlan 610`
+
+`name RED6`
+
+`end`
+
+`write`
+
+`sh vlan-sw`
+
+
+
+----------- EWS1 ----------------
+
+`conf t`
+
+`interface range f1/0 - 2`
+
+`switchport mode trunk`
+
+`no shutdown`
+
+`end`
+
+`write`
+
+
+
+`conf t`
+
+`vtp domain T2GRUPO10`
+
+`vtp password T2GRUPO10`
+
+`vtp mode client`
+
+`end`
+
+`write`
+
+`sh vtp status`
+
+
+
+-----------EWS3-------------------------
+
+`conf t`
+
+`interface range f1/0 - 2`
+
+`switchport mode trunk`
+
+`no shutdown`
+
+`end`
+
+`write`
+
+
+`conf t`
+
+`vtp domain T2GRUPO10`
+
+`vtp password T2GRUPO10`
+
+`vtp mode client`
+
+`end`
+
+`write`
+
+`sh vtp status`
+
+---------------- HSRP ----------------
+
+ACTIVO
+
+`configure terminal`
+
+`interface F#/# `
+
+`standby # ip "ip-virtual"`
+
+`standby # priority #`
+
+`standby # preempt`
+
+`exit`
+
+STAND BY
+
+`configure terminal`
+
+`interface f#/# `
+
+`standby # ip "ip-virtual"`
+
+`standby # priority # `
+
+`exit`

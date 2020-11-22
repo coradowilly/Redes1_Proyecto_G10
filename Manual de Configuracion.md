@@ -319,4 +319,7 @@ Se abrira la aplicacion Wireshark y se pude observar que los paquetes se estan e
 TOPOLOGIA 1
 ![pq](/Images/cap1.jpg)
 
+TOPOLOGIA 2
+![pq](/Images/cap2.jpg)
+
 ---
