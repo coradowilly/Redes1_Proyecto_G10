@@ -289,7 +289,8 @@ Se utilizo el siguiente comando para ver y observar que interfaces estan conecta
 
 ` sh spanning-tree blockedports`
 
-TOPOLOGIA 1
+> TOPOLOGIA 1
+
 ESW1
 ![pq](/Images/ESW1-SPT-T1.png)
 
@@ -299,7 +300,19 @@ ESW2
 CON STP
 ![pq](/Images/SPT-T1.png)
 
+> TOPOLOGIA 2
 
+ESW1
+![pq](/Images/stp1.jpeg)
+
+ESW2
+![pq](/Images/stp2.jpeg)
+
+ESW3
+![pq](/Images/stp3.jpeg)
+
+CON STP
+![pq](/Images/TP22.jpg)
 ---
 ---
 # Captura de Parquetes.
