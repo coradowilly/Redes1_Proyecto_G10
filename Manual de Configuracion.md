@@ -22,7 +22,7 @@
 
 - Configuracion de la topologia de red.
 
-- Calculos de Sub Interfaces
+- Calculo Ruta STP
 
 - Captura de Paquetes.
 
@@ -48,17 +48,31 @@
 
 - TOPOLOGIA 1
 
-![Topologia](/Images/rede1.jpg)
+|Aparato| IP VIRTUAL |
+|----|----|
+|||
+
 
 - TOPOLOGIA 2
 
-|Aparato| IP VIRTUAL |
-|----|----|
-|EWS2|192.168.15.3|
-|R3|192.168.15.1|
-|R4|192.168.15.2|
-|VM|192.168.15.10|
-|VM|192.168.15.15|
+### **VLAN**
+
+|Subred|VLAN| IP VIRTUAL |
+|----|----|---|
+|f0/0.1|60|192.168.60.254|
+|f0/0.2|70|192.168.70.254|
+|f0/1.1|60|192.168.61.254|
+|f0/1.2|70|192.168.71.254|
+|f1/0.1|60|192.168.62.254|
+|f1/0.2|70|192.168.72.254|
+
+### **HSRP**
+
+|Interfaz|Modo| IP VIRTUAL |
+|----|----|---|
+|f0/0|Espera|192.168.0.254|
+|f0/1|Activo|192.168.1.254|
+|f1/0|Espera|192.168.2.254|
 
 
 ---
