@@ -48,9 +48,12 @@
 
 - TOPOLOGIA 1
 
-|Aparato| IP VIRTUAL |
+|Vlan| IP VIRTUAL |
 |----|----|
-|||
+|1|192.168.101.10/24|
+|2|192.168.20.10/24|
+|3|192.168.30.20/24|
+|4|192.168.40.20/24|
 
 
 - TOPOLOGIA 2
@@ -82,7 +85,7 @@
 
 TOPOLOGIA 1
 
-![Topologia](/Images/Topologia1.jpeg)
+![Topologia](/Images/T1.png)
 
 TOPOLOGIA 2
 
@@ -92,17 +95,18 @@ TOPOLOGIA 2
 **Dispositivos a Configurar**
 Topologia 1
 - 1 Cloud
-- 1 Router
-- 1 Etherneth Switch
-- 2 Switch
+- 3 Router
+- 2 Etherneth Switch
+- 4 Switch
 - 4 Maquina Virtual con SO TinyLinux 
 
 Topologia 2
 - 1 Cloud
-- 3 Router
-- 1 Etherneth Switch
+- 1 Router
+- 3 Etherneth Switch
 - 2 Switch
 - 2 Maquina Virtual con SO TinyLinux 
+- 1 VPC
 ---
 ---
 
@@ -129,23 +133,10 @@ Para visualizar la configuracion se utiliza el comando:
 
 `sh int trunk `
 
-ESW1
-
-![esw](/Images/esw1.jpg)
-
-
 El rango de las interfaces dependera de cuales estan conectados al ESW.
-
 
 > Paso 2: Crear VLAN's en ESW
 
-Para esta topologia se utilizaran 3 vlans:
-
-|Vlan| Nombre |
-|----|----|
-|20| PROFESORES|
-|50| ESTUDIANTES|
-|70| INVITADOS|
 
 Las vlans se configuran con los siguientes comandos:
 
@@ -161,10 +152,53 @@ Para observar las vlans se utiliza el siguiete comando:
 
 `sh vlan-sw`
 
-![esw](/Images/esw13.jpg)
+Para configurar la VTP en modo servidor o cliente utilizamos los siguientes comandos:
+
+`conf t`
+
+`vtp domain <nombre> `
+
+`vtp password <password> `
+
+`vtp mode server|client`
+
+`end`
+
+Para configurar el port-channel se utilizan los siguientes comandos:
+
+`conf t`
+
+`int range f#/# - # `
+
+`channel-group <numero> mode on`
+
+`end`
+
+Configuracion ESW Topologia 1
+
+EWS1
+![esw](/Images/EWS1-T1.png)
+
+EWS2
+![esw](/Images/EWS2-T1.png)
+
+PORT-CHANNEL
+![esw](/Images/EWS2-CH-T1.png)
+
+Configuracion ESW Topologia 2
+
+EWS1
+![esw](/Images/esw1.jpg)
+
+EWS2
+![esw](/Images/esw2.jpg)
+![esw](/Images/ews22.jpg)
 
 
-> Paso 3: Configurar los puertos de Switch1 y Switch2.
+EWS3
+![esw](/Images/esw3.jpg)
+
+> Paso 3: Configurar los puertos de los switch.
 
 Se necesita configurar los tipos de los puertos de los switch, esto dependera de cuales estan conectados a los ESW y cuales estan conectados a los host dependiendo a que vlan pertenecen
 
@@ -173,21 +207,32 @@ GNS3 nos permite configurar desde un panel estos puertos.
 
 `Click derecho -> Configure `
 
-Ejemplo
+TOPOLOGIA 1
 
 Switch 1
+![sw](/Images/SWITCH1-T1.png)
+Switch 2
+![sw](/Images/SWITCH2-T1.png)
+Switch 3
+![sw](/Images/SWITCH3-T1.png)
+Switch 4
+![sw](/Images/SWITCH4-T1.png)
 
+TOPOLOGIA 2
+
+Switch 1
 ![sw](/Images/sw1.jpeg)
+Switch 2
+![sw](/Images/sw2.jpeg)
 
 
+> Paso 4: Configuracion del Router 
 
-> Paso 4: Configurar una red a cada subinterfaz del router 
-
-Para configurar las subinterfaces en el router primero se habilita la interfaz conectada:
+Para configurar las subinterfaces en el router primero se habilita la interfaz conectada y despues se crean la subinterfaces:
 
 `conf t`
 
-`inf f0/0`
+`inf f#/# | int f#/#.#`
 
 `no shutdown`
 
@@ -236,28 +281,24 @@ Topologia 2
 
 
 
->Paso 7: Realizar ping
-
-Ahora se debera de realizar los diversos pings entre los host para verificar la conexion:
-
-`ping <ip>`
-
-![pn](/Images/ping13.jpeg)
-
-![pn](/Images/ping24.jpeg)
-
-![pn](/Images/ping31.jpeg)
-
-
-
-
 ---
 ---
-# Calculo de SubInterfaces.
+# Calculo de ruta STP.
 
-Se utilizo la herramienta de Excel para poder calcular todas las subinterfaces de las topologias.
+Se utilizo el siguiente comando para ver y observar que interfaces estan conectadas o no son necesarias.
 
-![pq](/Images/calc.jpg)
+` sh spanning-tree blockedports`
+
+TOPOLOGIA 1
+ESW1
+![pq](/Images/ESW1-SPT-T1.png)
+
+ESW2
+![pq](/Images/ESW2-SPT-T1.png)
+
+CON STP
+![pq](/Images/SPT-T1.png)
+
 
 ---
 ---
@@ -275,6 +316,7 @@ Posterior se coloca sobre una conexcion y se inica la captura de paquetes:
 
 Se abrira la aplicacion Wireshark y se pude observar que los paquetes se estan enviando y recibiendo correctamente:
 
-![pq](/Images/cap.jpg)
+TOPOLOGIA 1
+![pq](/Images/cap1.jpg)
 
 ---

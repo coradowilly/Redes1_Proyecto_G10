@@ -3,109 +3,94 @@
 
 ## Topologia 1
 
-> ----------------------------ESW-----------------------------
+> # VTP & VLAN
 
-`config t `
+----------- ESW1 -----------
 
-`int range f#/# - # `
+`conf t `
 
-`switchport mode trunk `
+`int range f1/0 - 9`
 
-`no shutdown`
+`switchport mode trunk`
 
-`end`
+`no shu`
 
-`sh int trunk `
+`exit `
 
-> ----------------------------VLAN----------------------------
+`vtp domain T1Grupo10`
 
-`conf t`
+`vtp password T1Grupo10`
 
-`vlan <numero>`
+`vtp mode server `
 
-`name <nombre>`
+`vlan 20 `
 
-`end`
-
-`sh vlan-sw`
-
-> ----------------------------Router Interfaz----------------------------
-
-
-`conf t`
-
-`inf f0/0`
-
-`no shutdown`
-
-`end`
-
-> ----------------------------Routing Estatico----------------------------
-
-`conf t`
-
-`ip address 8.8.8.1 255.255.0.0`
-
-`ip ROUTE 192.168.15.0 255.255.255.0 8.8.8.2`
+`name RED1`
 
 `exit`
+
+`vlan 30`
+
+`name RED2`
+
+`exit`
+
+`vlan 40 `
+
+`name RED3`
+
+`exit`
+
+`vlan 50 `
+
+`name RED4`
+
+`exit`
+
+`write`
+
+----------- ESW2 -----------
+
+`conf t `
+
+`int range f1/0 - 9`
+
+`switchport mode trunk`
+
+`no shu`
+
+`exit `
+
+`vtp domain T1Grupo10`
+
+`vtp password T1Grupo10`
+
+`vtp mode client`
+
+`exit`
+
+`write`
+
+> # Portchannel 
+------------ ESW1 ---------
+
+`conf t `
+
+`int range f1/1 - 4`
+
+`channel-group 1 mode on`
+
+`end`
+
+------------ ESW2 ---------
+
+`conf t `
+
+`int range f1/1 - 4`
+
+`channel-group 1 mode on`
+
+`end`
+
 ## Topologia 2
-
-- ### **EIGRP**
-
->----------------------------Router----------------------------
-
-`conf t`
-
-`router eigrp 10`
-
-`network 10.10.0.0 0.0.0.255`
-
-`network 20.10.0.0 0.0.0.255`
-
-`network 192.168.15.0 0.0.0.255`
-
-`end`
-
-
-- ### **VRRP**
-
->------------------------Router----------------------------
-
-`conf t`
-
-`vrrp 10`
-
-`vrrp 10 ip 192.168.15.3`
-
-`vrrp 10 priority 120`
-
-`vrrp 10 preempt`
-
-`end`
-
-
-- ### **INTERFACES**
-
->------------------------ESW----------------------------
-
-`conf t`
-`int range f1/0 - 3`
-`no shut`
-`end`
-
-
-- ### **VLAN**
-
->------------------------EWS2----------------------------
-
-`conf t`
-
-`VLAN 70`
-
-`name INVITADOS`
-
-`end`
-
-`wr`
 
