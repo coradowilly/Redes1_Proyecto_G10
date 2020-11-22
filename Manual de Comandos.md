@@ -240,3 +240,15 @@ STAND BY
 `standby # priority # `
 
 `exit`
+
+> ASIGNAR IP VIRTUAL A LAS VLAN 
+
+`conf t`
+
+`int f#/#.#`
+
+`encapsulation dot1q #`
+
+`ip address <gateway> <mask>`
+
+`exit`
